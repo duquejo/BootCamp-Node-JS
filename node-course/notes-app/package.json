@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/duquejo01/BootCamp-Node-JS#readme",
   "dependencies": {
+    "chalk": "^2.4.1",
     "validator": "^10.8.0"
   }
 }
