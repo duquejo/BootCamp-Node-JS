@@ -109,4 +109,17 @@ yargs.command({
  * Yargs method for show the added commands
  */
 yargs.parse();
-// console.log( yargs.argv );
+
+/**
+ * *****************************************************************************
+ * If we want to debug a Node JS Application we use debugger native reserved word
+ * > node inspect [..args]
+ * 
+ * 1. Check Chrome: chrome://inspect/#devices URL
+ * 2. Open target (Configure remote ports)
+ * 3. Run/pause script execution
+ * 
+ * *****************************************************************************
+ * If  we want to check errors messages for hints
+ * 
+ */

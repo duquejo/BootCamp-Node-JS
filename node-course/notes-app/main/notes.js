@@ -16,6 +16,11 @@ const addNote = ( title, body ) => {
   const notes = loadNotes();
   // First duplicated match (Optimization Fix)
   const duplicateNote = notes.find( note => note.title === title );
+
+  // Use it with node inspect CLI command.
+  // chrome://inspect/#devices
+  // debugger;
+
   if( ! duplicateNote ) {
     // Append New Notes
     notes.push({ title, body });
@@ -23,7 +28,7 @@ const addNote = ( title, body ) => {
     saveNotes( notes );
     console.log( chalk.green.inverse('New note added!') );
   } else {
-    console.log( chalk.green.inverse( 'New title taken!') );
+    console.log( chalk.red.inverse( 'New title taken!') );
   }
 
 }
