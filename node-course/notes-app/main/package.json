@@ -1,0 +1,29 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "Development Notes App for Node JS BootCamp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duquejo01/BootCamp-Node-JS.git"
+  },
+  "keywords": [
+    "notes",
+    "nodejs",
+    "javascript",
+    "es6"
+  ],
+  "author": "José Duque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duquejo01/BootCamp-Node-JS/issues"
+  },
+  "homepage": "https://github.com/duquejo01/BootCamp-Node-JS#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "yargs": "^12.0.2"
+  }
+}
