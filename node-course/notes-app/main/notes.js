@@ -6,7 +6,8 @@
  * 
  * @requires fs FileSystem management Node module.
  */
-const fs = require('fs');
+const chalk = require('chalk');
+const fs    = require('fs');
 
 const getNotes = () => 'Your notes...';
 
@@ -16,22 +17,36 @@ const addNote = ( title, body ) => {
   const notes = loadNotes();
 
   // Duplicate notes functionality
-  const duplicateNotes = notes.filter( ( note ) => {
-    return note.title === title;
-  });
+  const duplicateNotes = notes.filter( (note) => note.title === title );
 
   if( duplicateNotes.length === 0 ) {
-
     // Append New Notes
     notes.push({ title, body });
-    
     // Store notes in notes.json file
     saveNotes( notes );
-    console.log('New note added!');
+    console.log( chalk.green.inverse('New note added!') );
   } else {
-    console.log('New title taken!');
+    console.log( chalk.green.inverse( 'New title taken!') );
   }
 
+}
+
+const removeNote = (title) => {
+  
+  // Load notes
+  const notes = loadNotes();
+
+  // Exclude criteria
+  const filteredNotes = notes.filter( (note) => note.title !== title );
+  
+  // @todo: Check if objects are completely different.
+  if( filteredNotes.length < notes.length ) {
+    // Save filtered notes
+    saveNotes( filteredNotes );
+    console.log( chalk.green.inverse('Note removed!') );
+  }else{
+    console.log( chalk.red.inverse('No note found!') );
+  }
 }
 
 const saveNotes = (notes) => {
@@ -55,5 +70,6 @@ const loadNotes = () => {
 
 module.exports = {
   getNotes, // getNotes : getNotes
-  addNote // addNote : addNote
+  addNote, // addNote : addNote
+  removeNote, // Challenge
 }
