@@ -12,14 +12,11 @@ const fs    = require('fs');
 const getNotes = () => 'Your notes...';
 
 const addNote = ( title, body ) => {
-
   // API
   const notes = loadNotes();
-
-  // Duplicate notes functionality
-  const duplicateNotes = notes.filter( (note) => note.title === title );
-
-  if( duplicateNotes.length === 0 ) {
+  // First duplicated match (Optimization Fix)
+  const duplicateNote = notes.find( note => note.title === title );
+  if( ! duplicateNote ) {
     // Append New Notes
     notes.push({ title, body });
     // Store notes in notes.json file
@@ -31,14 +28,11 @@ const addNote = ( title, body ) => {
 
 }
 
-const removeNote = (title) => {
-  
+const removeNote = title => {
   // Load notes
   const notes = loadNotes();
-
   // Exclude criteria
   const filteredNotes = notes.filter( (note) => note.title !== title );
-  
   // @todo: Check if objects are completely different.
   if( filteredNotes.length < notes.length ) {
     // Save filtered notes
@@ -49,7 +43,7 @@ const removeNote = (title) => {
   }
 }
 
-const saveNotes = (notes) => {
+const saveNotes = notes => {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync('notes.json', dataJSON );
 }
@@ -68,8 +62,26 @@ const loadNotes = () => {
   }
 }
 
+const listNotes = () => {
+  const notes = loadNotes();
+  console.log( chalk.yellow.inverse( 'Your notes' ) )
+  notes.map( note => console.log( note.title ) );
+}
+
+const readNote = title =>{
+  const notes = loadNotes();
+  const searchNote = notes.filter( note => note.title === title );
+  if( searchNote.length > 0 ) {
+    console.log( chalk.inverse.bold( searchNote[0].title ), searchNote[0].body );
+  } else {
+    console.log( chalk.red.inverse( 'Not note found!' ) );
+  }
+}
+
 module.exports = {
   getNotes, // getNotes : getNotes
   addNote, // addNote : addNote
   removeNote, // Challenge
+  listNotes, // Challenge
+  readNote // Challenge
 }
