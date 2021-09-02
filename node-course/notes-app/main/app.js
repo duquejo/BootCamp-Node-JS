@@ -9,9 +9,7 @@
  */
 const chalk     = require('chalk'); // Pretty print
 const yargs     = require('yargs'); // args parsing
-
-/** */
-const notes  = require('./notes'); // Custom user package
+const notes     = require('./notes'); // Custom user package
 
 // console.log( process.argv );
 
