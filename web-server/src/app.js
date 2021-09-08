@@ -128,7 +128,7 @@ app.get('/weather', ( request, response ) => {
     if ( error ) return response.send( { error } );
     forecast( latitude, longitude, (error, forecast ) => {
       if( error ) return response.send( { error } );
-      
+
       // Return data
       response.send({ forecast, location, address: request.query.address });
     });
@@ -182,6 +182,11 @@ app.get('*', ( request, response ) => {
  * App will be open until process is finished. (Port open)
  * @param port
  * @param callback
+ * 
+ * 
+ * 
+ * @see Note: We can use in the terminal the nodemon service listening 
+ * hbs changes with: `nodemon src/app.js -e js,hbs` CLI Command.
  */
 app.listen( 3000, () => {
   console.log('Server is up on port 3000.');
