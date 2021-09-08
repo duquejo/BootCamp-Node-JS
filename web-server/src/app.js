@@ -12,6 +12,12 @@ const express = require('express');
 const hbs = require('hbs');
 
 /**
+ * Custom Modules 'Geocode' 'Forecast'
+ */
+const { geocode } = require('./utils/geocode');
+const { forecast } = require('./utils/forecast');
+
+/**
  * Node JS server constants (Global)
  */
 // console.log( __dirname );
@@ -107,47 +113,46 @@ app.get('/about', ( request, response ) => {
  * Weather page route
  */
 app.get('/weather', ( request, response ) => {
-  response.send(
-    {
-      request: {
-        type: 'LatLon',
-        query: 'Lat 45.00 and Lon -75.00',
-        language: 'en',
-        unit: 'm'
-      },
-      location: {
-        name: 'Ingleside',
-        country: 'Canada',
-        region: 'Ontario',
-        lat: '45.000',
-        lon: '-75.000',
-        timezone_id: 'America/Toronto',
-        localtime: '2021-09-07 18:58',
-        localtime_epoch: 1631041080,
-        utc_offset: '-4.0'
-      },
-      current: {
-        observation_time: '10:58 PM',
-        temperature: 22,
-        weather_code: 113,
-        weather_icons: [
-          'https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png'
-        ],
-        weather_descriptions: [ 'Sunny' ],
-        wind_speed: 9,
-        wind_degree: 200,
-        wind_dir: 'SSW',
-        pressure: 1011,
-        precip: 0,
-        humidity: 57,
-        cloudcover: 0,
-        feelslike: 24,
-        uv_index: 6,
-        visibility: 16,
-        is_day: 'yes'
-      }
-    }
-  );
+
+  // Required address
+  if( ! request.query.address ) {
+    return response.send({
+      error: 'You must provide an address'
+    });
+  }
+
+  /**
+   * Geocode function
+   */
+  geocode( request.query.address, ( error, { latitude, longitude, location } = {} ) => {
+    if ( error ) return response.send( { error } );
+    forecast( latitude, longitude, (error, forecast ) => {
+      if( error ) return response.send( { error } );
+      
+      // Return data
+      response.send({ forecast, location, address: request.query.address });
+    });
+  });
+});
+
+/**
+ * Evaluating Query String URL
+ * @see request.query has all GET query args.
+ */
+app.get('/products', ( request, response ) => {
+
+  if( ! request.query.search ){
+    return response.send({
+      error: 'You must provide a search term'
+    });
+  }
+
+  console.log( request.query.search );
+
+  response.send({
+    products: []
+  })
+
 });
 
 /**
