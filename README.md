@@ -7,8 +7,16 @@
 ## Projects
 
 - Notes App: Node JS Tasks App with JSON datasets.
--- Chalk (2.4.1)
--- Yargs (12.0.2)
+  - Chalk (2.4.1)
+  - Yargs (12.0.2)
+
+- [Weather App](https://duque-weather-application.herokuapp.com/): Node JS Weather App application using live endpoints and a REST API Structure.
+  - [Geolocation|Geocoding API](https://www.mapbox.com/)
+  - [Weather Forecast](https://weatherstack.com/)
+  - Express (4.16.4): Server management
+  - Handlebars (4.0.1): Server HTML Templatting
+  - Postman Request (2.88.1-postman.30): HTTP Requests API management.
+  - [Weather App Git](https://github.com/duquejo01/Weather-App-Node): GIT Source.
 
 ## Tech
 
