@@ -191,3 +191,24 @@ app.get('*', ( request, response ) => {
 app.listen( 3000, () => {
   console.log('Server is up on port 3000.');
 } );
+
+/**
+ * When we're deploying to production we need to login into heroku and
+ * create SSH Keys
+ * 
+ * ssh-keygen -t rsa -b 4096 -C "duquejo01@gmail.com"
+ * 
+ * id_rsa is private
+ * is_rsa is public -> It'll be our integrator between Git and heroku
+ * 
+ * eval "$(ssh-agent -s)" -> Gets process for ssh-agent
+ * ssh-add -K ~/.ssh/id_rsa -> Adds identity to ssh (MAC)
+ * ssh-add ~/.ssh/id_rsa -> Adds identity to ssh (Windows)
+ * 
+ * 
+ * Get SSH Key code for apply it in Git Settings
+ * cat ~/.ssh/id_rsa.pub 
+ * 
+ * Authorizing github
+ * ssh -T git@github.com
+ */
