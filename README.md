@@ -56,4 +56,12 @@ Create heroku project
 heroku create '--name--'
 ```
 
-Setup heroku enviroment getting server port
+Setup heroku enviroment getting server port and assign heroku remote git
+```sh
+heroku git:remote -a git-name
+``` 
+
+Push repository to Heroku
+```sh
+git push heroku main
+```
