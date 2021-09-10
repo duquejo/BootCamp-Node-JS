@@ -36,6 +36,17 @@ Use the following structure to start a heroku application well and setup local n
   },
   ...
 ```
+## MongoDB Tips
+
+- noSQL Database
+- Uses the default 27017 system port.
+- Its recommended the use of https://www.npmjs.com/package/mongodb Node JS driver
+- Windows Command to kill MongoDB process (Service) - Run CMD as administrator
+  ```sh
+  net stop mongodb
+  ```
+
+
 ## Heroku setup
 
 When we're deploying to production we need to login into heroku and
