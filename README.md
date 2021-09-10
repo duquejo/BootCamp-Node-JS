@@ -25,6 +25,17 @@ I used a number of open source projects to work properly:
 
 - [node.js] - evented I/O for the backend
 
+## Package.json recommended setup
+
+Use the following structure to start a heroku application well and setup local nodemon dependencies easily
+```json
+  ...,
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e js,hbs"
+  },
+  ...
+```
 ## Heroku setup
 
 When we're deploying to production we need to login into heroku and
