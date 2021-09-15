@@ -73,6 +73,88 @@ MongoClient.connect( connectionURL, { useNewUrlParser: true }, ( error, client )
   });
 
   /**
+   * Collection updating
+   * 
+   * @param filter
+   * @param update (Use $set to set an object )
+   * 
+   * @see READ_THIS for more update criterias https://docs.mongodb.com/manual/reference/operator/update/
+   * 
+   */
+
+  const updatePromise = db.collection('users').updateOne({
+    _id: new ObjectId('613abadd7d94fc069d51e936')
+  }, {
+    // $set:{
+    //   name: 'Mike'
+    // }
+    $inc : {
+      age: 1 // Increment, -1 for decrement
+    }
+  });
+
+  /**
+   * Using promises to do actions with the Update Promises
+   */
+  updatePromise.then( ( result ) => {
+
+    /**
+     * modifiedcount (Files updated successfully)
+     * matchedcount (Files matched with criteria)
+     */
+    console.log( result );
+  }).catch( ( error ) => {
+    console.error( error );
+  });
+
+  /**
+   * Update Many Logic
+   * 
+   * @param filter
+   * @param update (Use $set to set an object )
+   * 
+   * @see READ_THIS for more update criterias https://docs.mongodb.com/manual/reference/operator/update/
+   */
+  const updateManyPromise = db.collection('tasks').updateMany({
+    completed: false
+  }, {
+    $set: {
+      completed: true
+    }
+  });
+
+  updateManyPromise.then( (result) => {
+    console.log( result );
+  }).catch( ( error ) => {
+    console.error( error );
+  });
+  
+  /**
+   * 
+   * Delete Many logic
+   * 
+   * @param filter
+   * 
+   */
+  db.collection('users').deleteMany({
+    age: 27
+  }).then( result => {
+    console.log( result );
+  }).catch( error => {
+    console.log( error );
+  });
+
+  /**
+   * Delete One Logic
+   */
+  db.collection('tasks').deleteOne({
+    description: 'Clean dishes'
+  })
+  .then( result => console.log( result ))
+  .catch( error => console.log( error ));
+
+
+  /**
    * 
    * Collection Insertion (insertOne)
    * 
@@ -83,20 +165,20 @@ MongoClient.connect( connectionURL, { useNewUrlParser: true }, ( error, client )
    * 
    * @param callback When Operation is complete
    */
-  // db.collection('users').insertOne({
-  //   _id: id,
-  //   name: 'Eliana',
-  //   age: 52
-  // }, ( error, result ) => {
-  //   if( error ) return console.error('Unable to insert user');
+  db.collection('users').insertOne({
+    _id: id,
+    name: 'Eliana',
+    age: 52
+  }, ( error, result ) => {
+    if( error ) return console.error('Unable to insert user');
 
-  //   /**
-  //    * All IDs inside
-  //    * @param result.insertedId (insertOne) method
-  //    * @param result.insertedIds (insertMany) method
-  //    */
-  //   console.log( result.insertedId );
-  // });
+    /**
+     * All IDs inside
+     * @param result.insertedId (insertOne) method
+     * @param result.insertedIds (insertMany) method
+     */
+    console.log( result.insertedId );
+  });
 
   /**
    * 
@@ -106,37 +188,37 @@ MongoClient.connect( connectionURL, { useNewUrlParser: true }, ( error, client )
    * 
    * @param callback When Operation is complete
    */  
-  // db.collection('users').insertMany([
-  //   {
-  //     name: 'Sergio',
-  //     age: 27
-  //   },{
-  //     name: 'Sofía',
-  //     age: 28
-  //   }
-  // ], ( error, result ) => {
-  //   if( error ) return console.error('Unable to insert documents.');
-  //   console.log( result.insertedIds );
-  // });
+  db.collection('users').insertMany([
+    {
+      name: 'Sergio',
+      age: 27
+    },{
+      name: 'Sofía',
+      age: 28
+    }
+  ], ( error, result ) => {
+    if( error ) return console.error('Unable to insert documents.');
+    console.log( result.insertedIds );
+  });
 
   /**
    * Challenge #1: Create a new tasks Collection
    * #Step: Add three documents inside.
    */
-  // db.collection('tasks').insertMany([{
-  //   description: 'Clean dishes',
-  //   completed: false
-  // },{
-  //   description: 'Feed & Pet Tito',
-  //   completed: true
-  // },{
-  //   description: 'Update Readme.md comments',
-  //   completed: true
-  // }], ( error, result ) => {
-  //   if( error ) return console.error('Unable to insert tasks');
+  db.collection('tasks').insertMany([{
+    description: 'Clean dishes',
+    completed: false
+  },{
+    description: 'Feed & Pet Tito',
+    completed: true
+  },{
+    description: 'Update Readme.md comments',
+    completed: true
+  }], ( error, result ) => {
+    if( error ) return console.error('Unable to insert tasks');
 
-  //   // Show last three added ids
-  //   console.log( result.insertedIds );
-  // });
+    // Show last three added ids
+    console.log( result.insertedIds );
+  });
 
 });
