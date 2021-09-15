@@ -19,6 +19,10 @@
   - [Weather App Git](https://github.com/duquejo01/Weather-App-Node): GIT Source.
   - [Weather App Demo](https://duque-weather-application.herokuapp.com/): Live Weather App Public Demo.
 
+- *Tasks Manager App*: Node JS Improved Tasks Manager App
+  - [Tasks Manager App Git](https://github.com/duquejo01/BootCamp-Node-JS): GIT Source.
+
+
 ## Tech
 
 I used a number of open source projects to work properly:
