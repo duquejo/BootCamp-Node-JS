@@ -2,7 +2,7 @@
 ### Experience memories
 
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
-[![made-with-nodejs](https://img.shields.io/badge/Made_with-Node_JS-green.svg)](https://github.com/duquejo01/BootCamp-Node-JS)
+[![made-with-nodejs](https://img.shields.io/badge/Made_with-Node_JS-green.svg)](https://nodejs.org/es/)
 
 ## Projects
 
@@ -19,8 +19,14 @@
   - [Weather App Git](https://github.com/duquejo01/Weather-App-Node): GIT Source.
   - [Weather App Demo](https://duque-weather-application.herokuapp.com/): Live Weather App Public Demo.
 
-- *Tasks Manager App*: Node JS Improved Tasks Manager App
-  - [Tasks Manager App Git](https://github.com/duquejo01/Task-Manager-App): GIT Source.
+- *Task Manager App*: Node JS Task Manager App using live endpoints, REST API Structure and a MongoDB Database Model.
+  - Express (4.17.1): Server management module
+  - Nodemon (2.0.12): Listens any JS (or whatever) file changes.
+  - MongoDB (4.1.2): Generate MongoDB Support, connections, and more.
+  - Mongoose (6.0.5): Manages database model sanitization and validation, also makes the MongoDB database general operations.
+  - Validator (13.6.0): Allows backend to manage complex validations. 
+  - [Task Manager App Git](https://github.com/duquejo01/Task-Manager-App): GIT Source.
+  - [Task Manager App Demo](#): Live Weather App Public Demo.
 
 
 ## Tech
