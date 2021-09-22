@@ -23,19 +23,56 @@
 //   console.log( result );
 // });
 
-const doWorkPromise = new Promise( ( resolve, reject ) => {
-  setTimeout( () => {
-    // resolve([7, 4, 1]);
-    reject('Things went wrong!');
-  }, 2000 );
-});
+// const doWorkPromise = new Promise( ( resolve, reject ) => {
+//   setTimeout( () => {
+//     // resolve([7, 4, 1]);
+//     reject('Things went wrong!');
+//   }, 2000 );
+// });
+
+// /**
+//  * Then : Success (Fulfilled)
+//  * Catch : Error (Rejected)
+//  */
+// doWorkPromise.then( ( result ) => {
+//   console.log( `Success ${ result }` );
+// }).catch( ( error ) => {
+//   console.error( `Error ${ error }` );
+// });
 
 /**
- * Then : Success (Fulfilled)
- * Catch : Error (Rejected)
+ * Promises chaining
  */
-doWorkPromise.then( ( result ) => {
-  console.log( `Success ${ result }` );
-}).catch( ( error ) => {
-  console.error( `Error ${ error }` );
-});
+
+const add = ( a, b ) => {
+  return new Promise( ( resolve, reject ) => {
+    setTimeout(() => {
+      resolve( a + b );
+    }, 2000);
+  })
+};
+
+
+/**
+ * Example to chaining and nesting
+ */
+// add( 1, 2 ).then( sum => {
+//   console.log( sum );
+
+//   add( sum, 5 ).then( sum2 => {
+//     console.log( sum2 );
+//   }).catch( e => console.error( e ) );
+
+// }).catch( e => console.error( e ) );
+
+/**
+ * Chaining
+ * @see Chanining promises are sent as continous return and then. 
+ * The catch are globally
+ */
+add( 1, 1).then( sum => {
+  console.log( sum );
+  return add( sum, 4 );
+})
+.then( sum2 => console.log( sum2 ) )
+.catch( e => console.error( e ) );
