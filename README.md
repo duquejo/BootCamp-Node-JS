@@ -25,7 +25,7 @@
   - MongoDB (4.1.2): Generate MongoDB Support, connections, and more.
   - Mongoose (6.0.5): Manages database model sanitization and validation, also makes the MongoDB database general operations.
   - Validator (13.6.0): Allows backend to manage complex validations. 
-  - [Task Manager App Git](https://github.com/duquejo01/Task-Manager-App): GIT Source.
+  - [Task Manager App Git](https://github.com/duquejo01/Task-Manager): GIT Source.
   - [Task Manager App Demo](#): Live Weather App Public Demo.
 
 
