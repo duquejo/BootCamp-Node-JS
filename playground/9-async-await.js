@@ -2,7 +2,7 @@
  * Async & Await Practice
  */
 
- const add = ( a, b ) => {
+const add = ( a, b ) => {
   return new Promise( ( resolve, reject ) => {
     setTimeout(() => {
 
