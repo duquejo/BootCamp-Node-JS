@@ -126,3 +126,31 @@ Push repository to Heroku
 ```sh
 git push heroku main
 ```
+
+## Git remote tip vs local untracked files
+
+For upload to Git an untracked files to a new Git Repository first execute git in local:
+```sh
+git init
+```
+
+Add the remote URL
+```sh
+git remote add origin URL
+```
+
+Check if the URL is saved successfully
+```sh
+git remote
+git remote -v
+```
+
+Fetch & Merge the remote changes over local instance files
+```sh
+git pull origin master --allow-unrelated-histories
+```
+
+Add files to Stage, Commit them and push it to Git
+```sh
+git push origin master
+```
